@@ -1,0 +1,12 @@
+.content {
+    
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.btn {
+    
+    background-color: aquamarine;
+    border-color: aquamarine;
+}

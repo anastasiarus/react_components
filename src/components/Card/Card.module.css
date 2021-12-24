@@ -1,0 +1,12 @@
+.card {
+    display: inline-block;
+    width: 200px;
+    height: 250px;
+    text-align: center;
+}
+
+.img {
+    margin: 5px;
+    max-width: 150px;
+    max-height: 200px;
+}
