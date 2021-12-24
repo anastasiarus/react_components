@@ -1,12 +1,14 @@
 .card {
+    margin-left: 10px;
+    margin-right: 10px;
     display: inline-block;
     width: 200px;
     height: 250px;
     text-align: center;
-}
+} 
 
 .img {
     margin: 5px;
     max-width: 150px;
-    max-height: 200px;
+    max-height: 150px;
 }
