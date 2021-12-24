@@ -3,12 +3,12 @@ import classes from "./Card.module.css"
 
 
 
-const Card = ({id, title, text, img}) => {
+const Card = (props) => {
 
-    return <div className={classes.card} key={id} >
-        <h3  className={classes.main}>{title}</h3>
-        <p className={classes.desc}>{text}</p>
-        <img className={classes.img} src={img} alt="card" />
+    return <div className={classes.card} key={props.id} >
+        <h3  className={classes.main}>{props.title}</h3>
+        <p className={classes.desc}>{props.text}</p>
+        <img className={classes.img} src={props.img} alt="card" />
     </div>
 }
 

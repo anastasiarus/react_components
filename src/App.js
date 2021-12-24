@@ -34,7 +34,7 @@ function App() {
         ]}/>
         <Content />
         <Text />
-        <Input type='password' placeholder='Пароль' class="form-control"/>
+        <Input type='text' placeholder='Введите текст' />
         <Squares />
       </div>
       <Footer />

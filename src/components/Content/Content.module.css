@@ -1,12 +1,12 @@
 .content {
-    
     width: 100%;
     text-align: center;
     padding: 10px 0;
 }
 
 .btn {
-    
+    margin-right: 450px;
+    padding: 10px;
     background-color: aquamarine;
     border-color: aquamarine;
 }
