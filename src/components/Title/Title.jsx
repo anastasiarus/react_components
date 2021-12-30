@@ -1,9 +1,6 @@
+const Title = ({ title }) => {
+  document.title = title;
 
-
- const Title = ({title}) => {
-
-    document.title = title
-
-    return null
-}
-export default Title 
+  return null;
+};
+export default Title;

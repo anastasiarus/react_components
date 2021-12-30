@@ -42,7 +42,7 @@ const Content = () => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Content;
+export default Content
