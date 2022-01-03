@@ -1,46 +1,77 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./Registration.module.css";
 
 const Registration = () => {
-  const [register, setRegister] = useState(() => {
-    return {
-      username: "",
-      email: "",
-      password: "",
-      password2: "",
-    };
+  const [currentUser, setCurrentUser] = useState({
+    username: "", 
+    email: "",
+    password1: "",
+    password2: "",
   });
 
-  const handleClick = event => {
-    setRegister(event.target.value)
-}
+  const handleChange = (e) => {
+    setCurrentUser((prev) => {
+      return {
+        ...prev,
+        [e.target.name]: e.target.value,
+      };
+    });
+  };
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    if (localStorage.getItem("Users")) {
+      setUsers(JSON.parse(localStorage.getItem("Users")));
+    }
+  }, []);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (currentUser.password1 === currentUser.password2) {
+      const loginUser = {
+        username: currentUser.username,
+        email: currentUser.email,
+        password: currentUser.password1,
+      };
+      localStorage.setItem("CurrentUser", JSON.stringify(loginUser));
+      localStorage.setItem("Users", JSON.stringify(users.concat(loginUser)));
+      window.location.pathname = "/mainpage"; 
+    } else console.log('Ошибка')
+  };
 
   return (
     <div className={classes.registration}>
       <h2>Registration:</h2>
-      <form>
-        <p>
+      <form onSubmit={handleSubmit}>
+      <p>
           Name:
           <input
-            type="username"
+            type="text"
             id="username"
             name="username"
-            value={register.username}
-            onChange={handleClick}
+            value={currentUser.username}
+            onChange={handleChange}
           />
         </p>
         <p>
           Email:
-          <input type="email" id="email" name="email" value={register.email} onChange={handleClick}/>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={currentUser.email}
+            onChange={handleChange}
+          />
         </p>
         <p>
           Password:
           <input
             type="password"
-            id="password"
-            name="password"
-            value={register.password}
-            onChange={handleClick}
+            id="password1"
+            name="password1"
+            value={currentUser.password1}
+            onChange={handleChange}
           />
         </p>
         <p>
@@ -49,11 +80,14 @@ const Registration = () => {
             type="password"
             id="password2"
             name="password2"
-            value={register.password2}
-            onChange={handleClick}
+            value={currentUser.password2}
+            onChange={handleChange}
           />
         </p>
-        <input className={classes.submit} type="submit" />
+        <div className={classes.alert}></div>
+        <div>
+          <button type="submit">Отправить</button>
+        </div>
       </form>
     </div>
   );

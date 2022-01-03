@@ -1,41 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./Login.module.css";
 
 const Login = () => {
-  const [log, setLog] = useState(() => {
-    return {
-      username: "",
-      email: "",
-      password: "",
-    };
-  });
+  const [currentUser, setCurrentUser] = useState({
+    username: "", 
+    email: '',
+    password: ''
+  })
 
-  const handleClick = event => {
-    setLog(event.target.value)
+  const handleChange = (e) => {
+    setCurrentUser(prev => {
+      return {
+          ...prev,
+          [e.target.name]: e.target.value,
+      }
+  })}
+
+   const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    if (localStorage.getItem('Users')) {
+      setUsers(JSON.parse(localStorage.getItem('Users')));
+    }
+  }, [])
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+     if (users.some((user) => (user.email === currentUser.email && user.password === currentUser.password && user.username === currentUser.username))) {
+      localStorage.setItem('CurrentUser', JSON.stringify(currentUser));
+      window.location.pathname = '/mainpage';
+    } else {
+      console.log('Неверно введены данные')
+    } 
 }
-
-localStorage.setItem('username', log.username);
-localStorage.setItem('email', log.email);
-localStorage.setItem('password', log.password);
-
 
   return (
     <div className={classes.login}>
       <h2>Login:</h2>
-      <form>
-        <p>
+      <form onSubmit={handleSubmit}>
+      <p>
           Name:
-          <input
-            type="username"
-            id="username"
-            name="username"
-            value={log.username}
-            onChange={handleClick}
-          />
+          <input type="text" id="username" name="username" value={currentUser.username} onChange={handleChange}/>
         </p>
         <p>
           Email:
-          <input type="email" id="email" name="email" value={log.email} onChange={handleClick}/>
+          <input type="email" id="email" name="email" value={currentUser.email} onChange={handleChange}/>
         </p>
         <p>
           Password:
@@ -43,14 +52,18 @@ localStorage.setItem('password', log.password);
             type="password"
             id="password"
             name="password"
-            value={log.password}
-            onChange={handleClick}
+            value={currentUser.password}
+            onChange={handleChange}
           />
         </p>
-        <input className={classes.enter} type="submit" />
+        <div className={classes.alert}></div>
+        <div>
+          <button type='submit'>Отправить</button>
+        </div>
       </form>
     </div>
   );
 };
 
 export default Login;
+

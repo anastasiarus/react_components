@@ -19,42 +19,44 @@ import MainPage from './components/MainPage/MainPage.jsx';
 
 function App() {
 
-  return <BrowserRouter> 
-  <Routes>
-        <Route path="/"  element={<RegForm />}/>
-        <Route path="/registration" element={<Registration />}/>
-        <Route path="/login"  element={<Login />}/>
-        <Route path="/mainpage"  element={<MainPage />}/>
-    </Routes>
-    </BrowserRouter> 
-  
+  return  <BrowserRouter> 
+    <Routes>
+          <Route path="/"  element={<RegForm />}/>
+          <Route path="/registration" element={<Registration />}/>
+          <Route path="/login"  element={<Login />}/>
+          <Route path="/mainpage"  element={<MainPage />}/>
+      </Routes>
+      </BrowserRouter>  
   {/* <div className="App">
-    <Title title='ПРИЛОЖЕНИЕ' />
-    <Header />
-    <div className='body'>
-       <Navbar menu={[
-          {
-            title: 'users',
-            link: '/users'
-          },
-          {
-            title: 'chats',
-            link: '/chats'
-          },
-          {
-            title: 'communities',
-            link: '/communities'
-          }
+  <Title title='ПРИЛОЖЕНИЕ' />
+  <Header />
+  <div className='body'>
+     <Navbar menu={[
+        {
+          title: 'users',
+          link: '/users'
+        },
+        {
+          title: 'chats',
+          link: '/chats'
+        },
+        {
+          title: 'communities',
+          link: '/communities'
+        }
 
-        ]} />
-        <Content />
-        <Text />
-        <Input type='text' placeholder='Введите текст' />
-        <Squares /> 
-      <DropDown />
-    </div>
-    <Footer />
-  </div> */}
+      ]} />
+      <Content />
+      <Text />
+      <Input type='text' placeholder='Введите текст' />
+      <Squares /> 
+    <DropDown />
+  </div>
+  <Footer />
+</div>  */}
+  
+  
+   
   
 }
 

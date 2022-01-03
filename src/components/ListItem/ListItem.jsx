@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import classes from "./ListItem.module.css";
+import { Context } from "../DropDown/DropDown";
 
 const ListItem = ({ ingredientName, onCheck, type }) => {
+  const setContext = useContext(Context)
   const [checked, setChecked] = useState(false);
   const [count, setCount] = useState(0);
   
@@ -9,6 +11,7 @@ const ListItem = ({ ingredientName, onCheck, type }) => {
   const handleClick = () => {
     setChecked(!checked);
     onCheck(!checked, ingredientName);
+    setContext(!checked, ingredientName)
   };
 
   const ingredientCount = (e) => {
